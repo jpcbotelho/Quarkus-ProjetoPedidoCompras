@@ -6,10 +6,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -23,4 +20,9 @@ public class PedidoEntity extends PanacheEntity {
     // mappedBy refere-se ao nome da variavel pedido na classe ItemPedidoEntity
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Set<ItemPedidoEntity> itens;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedidoTipo status;
+
+    private String mensagemStatus;
 }
